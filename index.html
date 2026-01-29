@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeOS | Digital Command Center</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar d-none d-lg-flex flex-column">
+        <div class="logo mb-5">
+            <h2 class="fw-bold m-0"><span class="text-primary">Life</span>OS</h2>
+        </div>
+
+        <nav class="nav flex-column gap-2 mb-auto">
+            <a href="#" class="nav-link active" data-page="dashboard">
+                <i class="fa-solid fa-house me-3"></i> Dashboard
+            </a>
+            <a href="#" class="nav-link" data-page="goals">
+                <i class="fa-solid fa-bullseye me-3"></i> Goals
+            </a>
+            <a href="#" class="nav-link" data-page="habits">
+                <i class="fa-solid fa-repeat me-3"></i> Habits
+            </a>
+            <a href="#" class="nav-link" data-page="planner">
+                <i class="fa-solid fa-calendar-day me-3"></i> Planner
+            </a>
+            <a href="#" class="nav-link" data-page="vault">
+                <i class="fa-solid fa-vault me-3"></i> Knowledge
+            </a>
+            <a href="#" class="nav-link" data-page="mood">
+                <i class="fa-solid fa-face-smile me-3"></i> Mood
+            </a>
+            <a href="#" class="nav-link" data-page="analytics">
+                <i class="fa-solid fa-chart-line me-3"></i> Analytics
+            </a>
+        </nav>
+
+        <div class="sidebar-footer mt-auto pt-4 border-top border-secondary opacity-50">
+            <a href="#" class="nav-link mb-3" data-page="settings">
+                <i class="fa-solid fa-gear me-3"></i> Settings
+            </a>
+            <div class="user-profile d-flex align-items-center gap-3">
+                <div class="avatar bg-primary rounded-circle d-flex align-items-center justify-content-center"
+                    style="width: 40px; height: 40px;">
+                    <span class="fw-bold">JD</span>
+                </div>
+                <div>
+                    <p class="m-0 fw-medium small">John Doe</p>
+                    <p class="m-0 text-muted extra-small">Pro Member</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <main class="main-content">
+        <!-- Topbar -->
+        <header class="topbar glass-card mb-4 d-flex align-items-center justify-content-between p-3">
+            <div class="search-bar position-relative w-50">
+                <i
+                    class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                <input type="text" class="form-control bg-transparent border-0 ps-5 text-white"
+                    placeholder="Search anything...">
+            </div>
+
+            <div class="topbar-actions d-flex align-items-center gap-4">
+                <div class="notifications position-relative">
+                    <i class="fa-solid fa-bell fs-5"></i>
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-light"
+                        style="font-size: 0.6rem;">
+                        3
+                    </span>
+                </div>
+                <div class="calendar-info d-none d-sm-block text-end">
+                    <p class="m-0 fw-bold" id="currentDate">Jan 29, 2026</p>
+                    <p class="m-0 text-muted small" id="currentTime">16:40 PM</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div id="content-container">
+            <!-- Dynamic content will be loaded here -->
+            <section id="dashboard-view" class="animate-fade-in">
+                <div class="welcome-section mb-4">
+                    <h2 class="fw-bold mb-1" id="greetingText">Good Afternoon, John</h2>
+                    <p class="text-muted">Here's what's happening with your life today.</p>
+                </div>
+                <div class="row g-4">
+                    <!-- Productivity Score -->
+                    <div class="col-md-4">
+                        <div
+                            class="glass-card h-100 d-flex flex-column align-items-center justify-content-center text-center">
+                            <h5 class="text-muted mb-3">Productivity Score</h5>
+                            <div class="score-circle position-relative mb-3">
+                                <svg width="120" height="120">
+                                    <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,0.1)"
+                                        stroke-width="8" />
+                                    <circle cx="60" cy="60" r="54" fill="none" stroke="url(#blueGradient)"
+                                        stroke-width="8" stroke-dasharray="339.292" stroke-dashoffset="84.823"
+                                        stroke-linecap="round" />
+                                    <defs>
+                                        <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:var(--primary)" />
+                                            <stop offset="100%" style="stop-color:var(--accent-blue)" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="position-absolute top-50 start-50 translate-middle">
+                                    <h2 class="fw-bold m-0">75%</h2>
+                                </div>
+                            </div>
+                            <p class="text-muted small m-0">Excellent progress today!</p>
+                        </div>
+                    </div>
+
+                    <!-- Daily Focus -->
+                    <div class="col-md-8">
+                        <div class="glass-card h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="m-0">Today's Focus</h5>
+                                <button class="btn btn-sm btn-outline-primary rounded-pill">Add Task</button>
+                            </div>
+                            <div class="tasks-list">
+                                <div
+                                    class="task-item d-flex align-items-center gap-3 mb-3 p-3 rounded-4 bg-white bg-opacity-5">
+                                    <input type="checkbox" class="form-check-input mt-0" checked>
+                                    <div class="flex-grow-1">
+                                        <p class="m-0 fw-medium">Complete LifeOS Architecture</p>
+                                        <span
+                                            class="badge bg-primary-subtle text-primary extra-small">Productivity</span>
+                                    </div>
+                                    <span class="text-muted small">09:00 AM</span>
+                                </div>
+                                <div
+                                    class="task-item d-flex align-items-center gap-3 mb-3 p-3 rounded-4 bg-white bg-opacity-5">
+                                    <input type="checkbox" class="form-check-input mt-0">
+                                    <div class="flex-grow-1">
+                                        <p class="m-0 fw-medium text-white">Refactor Habist Module</p>
+                                        <span class="badge bg-purple-subtle text-purple extra-small"
+                                            style="color: var(--accent-purple) !important;">Development</span>
+                                    </div>
+                                    <span class="text-muted small">11:30 AM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Habit Rings -->
+                    <div class="col-md-4">
+                        <div class="glass-card">
+                            <h5 class="mb-4">Habit Streaks</h5>
+                            <div class="d-flex justify-content-around">
+                                <div class="habit-mini text-center">
+                                    <div class="mini-ring mb-2"
+                                        style="width: 50px; height: 50px; border: 4px solid var(--accent-lime); border-radius: 50%;">
+                                    </div>
+                                    <span class="extra-small d-block">Water</span>
+                                </div>
+                                <div class="habit-mini text-center">
+                                    <div class="mini-ring mb-2"
+                                        style="width: 50px; height: 50px; border: 4px solid var(--accent-purple); border-radius: 50%;">
+                                    </div>
+                                    <span class="extra-small d-block">Read</span>
+                                </div>
+                                <div class="habit-mini text-center">
+                                    <div class="mini-ring mb-2"
+                                        style="width: 50px; height: 50px; border: 4px solid var(--primary); border-radius: 50%;">
+                                    </div>
+                                    <span class="extra-small d-block">Mediate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Widgets -->
+                    <div class="col-md-8">
+                        <div class="row g-4">
+                            <div class="col-sm-6">
+                                <div class="glass-card text-center py-4">
+                                    <i class="fa-solid fa-brain fs-3 text-primary mb-2"></i>
+                                    <h4 class="m-0">12</h4>
+                                    <p class="text-muted small m-0">Notes Captured</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="glass-card text-center py-4">
+                                    <i class="fa-solid fa-fire fs-3 text-danger mb-2"></i>
+                                    <h4 class="m-0">7 Days</h4>
+                                    <p class="text-muted small m-0">Habit Streak</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Scripts -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>
